@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{%block content %}
+    <div class="container mt-5">
+        <h2 class="text-center">Recipes Results</h2>
+        <p>Here are the recipes that match your ingredients:</p>
+        {% if recipes %}
+        <div class="row">
+            {% for recipe in recipes %}
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <img class="card-img-top" src="{{ recipe.image }}" alt="{{ recipe.title }}" />
+                    <div class="card-body">
+                        <h5 class="card-title">{{ recipe.title }}</h5>
+                        <p><strong>Used Ingredients:</strong></p>
+                        <ul>
+                            {% for ingredient in recipe.usedIngredients %}
+                            <li>{{ ingredient.original }}</li>
+                            {% endfor %}
+                        </ul>
+                        <p><strong>Missed Ingredients:</strong></p>
+                        <ul>
+                            {% for ingredient in missedIngredients %}
+                            <li>{{ ingredient.original }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p> No recipes found, please search again with different ingredients.</p>
+        {% endif %}
+        <a href="/" class="btn btn-secondary">Search Again</a>
+    </div>
+{% endblock %}
