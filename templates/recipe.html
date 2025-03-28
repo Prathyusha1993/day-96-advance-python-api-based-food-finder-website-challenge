@@ -1,2 +1,19 @@
 {% extends 'base.html' %}
 {% block title %}Random Recipes{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center"> {{ recipe.title }}</h2>
+    <img src="{{ recipe.image }}" class="img-fluid mx-auto d-block" alt="{{ recipe.title }}" />
+    <h4 class="mt-4">Ingredients:</h4>
+    <ul>
+        {% for ingredient in recipe.extendedIngredients %}
+        <li>{{ ingredient.original }}</li>
+        {% endfor %}
+    </ul>
+    <h4>Instructions</h4>
+    <p>{{ recipe.instructions | safe }}</p>
+
+    <a href="{{ url_for('home') }}"> Back to Home</a>
+</div>
+{% endblock %}

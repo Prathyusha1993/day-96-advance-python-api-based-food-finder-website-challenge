@@ -15,9 +15,9 @@ BASE_URL = 'https://api.spoonacular.com/recipes'
 
 @app.route('/')
 def home():
-    response = requests.get(f'{BASE_URL}/random', params={'apiKey': API_KEY, 'number': 5})
-    trending_recipes = response.json()
-    return render_template('index.html', trending=trending_recipes)
+    response = requests.get(f'{BASE_URL}/random', params={'apiKey': API_KEY, 'number': 6})
+    trending_recipes = response.json().get('recipes', [])
+    return render_template('index.html', recipes=trending_recipes)
 
 @app.route('/search', methods=['GET','POST'])
 def search():
@@ -43,13 +43,13 @@ def search():
 def recipe_details(recipe_id):
     response = requests.get(f'{BASE_URL}/{recipe_id}/information', params={'apiKey': API_KEY})
     recipe_details = response.json()
-    return render_template('recipe.html', recipes=recipe_details)
+    return render_template('recipe.html', recipe=recipe_details)
 
 @app.route('/random')
 def random_recipes():
     response = requests.get(f'{BASE_URL}/random', params={'apiKey': API_KEY, 'number':5})
     random_data = response.json().get('recipes', [])[0]
-    return render_template('recipe.html', recipes=random_data)
+    return render_template('recipe.html', recipe=random_data)
 
 
 if __name__ == '__main__':

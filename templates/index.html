@@ -14,7 +14,7 @@
 
         <h3 class="mt-3">Trending Recipes</h3>
         <div class="row">
-            {% for recipe in trending %}
+            {% for recipe in recipes %}
             <div class="col-md-4">
                 <div class="card mb-3">
                     <img src="{{ recipe.image }}" alt="{{recipe.title}}" class="card-img-top" />
@@ -26,6 +26,6 @@
             </div>
             {% endfor %}
         </div>
-        <a href="{{ url_for('random') }}" class="btn btn-warning">Surprise me with a random recipe</a>
+        <a href="{{ url_for('random_recipes') }}" class="btn btn-warning">Surprise me with a random recipe</a>
     </div>
 {% endblock %}

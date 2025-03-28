@@ -22,7 +22,7 @@
                         </ul>
                         <p><strong>Missed Ingredients:</strong></p>
                         <ul>
-                            {% for ingredient in missedIngredients %}
+                            {% for ingredient in recipe.missedIngredients %}
                             <li>{{ ingredient.original }}</li>
                             {% endfor %}
                         </ul>
